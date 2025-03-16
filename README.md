@@ -104,7 +104,7 @@ The project consists of four main components:
 2. Install dependencies:
 
    ```bash
-   pnpm install
+   npm install
    ```
 
 3. Configure environment variables:
@@ -117,7 +117,7 @@ The project consists of four main components:
 
 4. Start the development server:
    ```bash
-   pnpm dev
+   npm dev
    ```
 
 ## Project Structure
