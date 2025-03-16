@@ -133,11 +133,9 @@ src/
 
 ## Scripts
 
-- `pnpm dev`: Start development server
-- `pnpm build`: Build for production
-- `pnpm start`: Start production server
-- `pnpm lint`: Run ESLint
-- `pnpm type-check`: Run TypeScript checks
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run start`: Start production server
 
 ## Related
 
