@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Plant Reader Web Application
+
+A Next.js application that provides a beautiful, paper-styled interface for monitoring plant moisture levels. This web app is part of the larger Plant Reader IoT system.
+
+## Features
+
+- 🌱 **Plant Management**
+  - View all your plants in one place
+  - Individual plant detail pages
+  - Historical moisture trends
+- 📊 **Real-time Moisture Monitoring**
+
+  - Live updates of plant moisture levels
+  - Historical data visualization using Chart.js
+  - Support for multiple sensors per plant
+
+- 🎨 **Paper-Styled Design**
+
+  - Unique notebook-like interface
+  - Animated doodles for visual interest
+  - Responsive layout for all devices
+
+## Tech Stack
+
+- **Framework**: Next.js 13+ (App Router)
+- **Language**: TypeScript
+- **Styling**:
+  - TailwindCSS for utility classes
+  - Custom CSS for paper styling
+- **Data Visualization**: Chart.js with react-chartkick
+- **State Management**: React hooks and Server Components
+
+## Project Structure
+
+```
+src/
+├── actions/          # Server actions for data fetching
+├── app/             # Next.js app router pages
+├── components/      # Reusable React components
+│   ├── Paper/      # Paper styling components
+│   ├── List/       # List components
+│   └── ...         # Other shared components
+├── lib/            # Utility functions and helpers
+└── types/          # TypeScript type definitions
+```
+
+## Key Components
+
+- **Paper Components**: Provides the notebook-like styling
+
+  - `Paper`: Main container with lined background
+  - `LinedContent`: Content with notebook lines
+  - `UnlinedContent`: Clean content areas
+
+- **Doodles**: Animated decorative elements
+
+  - Random positioning
+  - Floating animations
+  - Configurable count
+
+- **Charts**: Moisture level visualization
+  - Historical trends
+  - Real-time updates
+  - Responsive design
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Set up environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   cp .env.example .env.local
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   Configure the following variables:
 
-## Learn More
+   ```
+   DATABASE_URL=your_database_url
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Open [http://localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
+## Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- TailwindCSS for utility-first styling
+- Custom CSS variables for paper styling:
+  ```css
+  :root {
+    --paper-color: #fffefa;
+    --line-color: #95c6e9;
+    --line-spacing: 1.5rem;
+  }
+  ```
+
+### Data Flow
+
+1. Server components fetch initial data
+2. Data passed to client components as props
+3. Client components handle interactivity
+4. Real-time updates via client-side hooks
+
+## Contributing
+
+1. Create a feature branch:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. Make your changes and commit:
+
+   ```bash
+   git commit -m "feat: add your feature"
+   ```
+
+3. Push and create a pull request:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+## Scripts
+
+- `pnpm dev`: Start development server
+- `pnpm build`: Build for production
+- `pnpm start`: Start production server
+- `pnpm lint`: Run ESLint
+- `pnpm type-check`: Run TypeScript checks
+
+## Related
+
+- [Main Project README](../../README.md)
