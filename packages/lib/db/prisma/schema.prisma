@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Plant {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255)
+  desc      String?
+  metaData  Json?     @map("meta_data")
+
+  readers         PlantReader[]
+
+  @@map("plants")
+}
+
+model PlantReader {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255)
+  desc      String?
+  plantId   Int       @map("plant_id")
+  metaData  Json?     @map("meta_data")
+
+  plant   Plant     @relation(fields: [plantId], references: [id], map: "plant_readers_plant_id_plants_id_fk")
+  plantReaderLogs   PlantReaderLog[]
+
+  @@map("plant_readers")
+}
+
+model PlantReaderLog {
+  id            Int           @id @default(autoincrement())
+  moistureLevel Int           @map("moisture_level") // a percentage represented by an int
+  metaData      Json?         @map("meta_data") // battery life, etc.
+  plantReaderId Int           @map("plant_reader_id")
+  createdAt     DateTime      @default(now()) @db.Timestamp(6) @map("created_at")
+
+  plantReader   PlantReader   @relation(fields: [plantReaderId], references: [id], map: "plant_reader_logs_plant_reader_id_plant_readers_id_fk")
+  
+  @@map("plant_reader_logs")
+}

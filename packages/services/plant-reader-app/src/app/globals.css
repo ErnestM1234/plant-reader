@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    --line-spacing: 1.5rem; /* Base spacing between lines */
+    --line-color: #95c6e9; /* Line color */
+
+    --paper-color: #fffefa; /* Paper background color */
+    --paper-width: 90%; /* Responsive width */
+    --paper-height: 90%; /* Responsive height */
+
+    --p-h-margin: 5rem; /* Horizontal margin for <p> */
+  }
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 5.7% 82.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --p-h-margin: 1.5rem; /* Even smaller margin for mobile screens */
+    --paper-width: 100%; /* Full width for mobile screens */
+    --paper-heigth: 100%; /* Full height for mobile screens */
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --p-h-margin: 2.5rem; /* Smaller margin for tablets */
+    --paper-width: 100%; /* Full width for mobile screens */
+    --paper-heigth: 100%; /* Full height for mobile screens */
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --p-h-margin: 3rem; /* Margin for small screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --p-h-margin: 4rem; /* Margin for large screens */
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --p-h-margin: 5rem; /* Margin for extra-large screens */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.line {
+  border-top: 2px solid rgba(114, 180, 222, 0.778);
+}
+
+.paper-container {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.paper {
+  width: var(--paper-width); /* Responsive width */
+  min-height: var(--paper-height);
+  /* 10vw calc((100 - var(--paper-height))/2) 10vw; */
+  margin-top: calc((100% - var(--paper-height)) / 2);
+  margin-left: calc((100% - var(--paper-width)) / 2);
+  margin-bottom: calc((100% - var(--paper-height)) / 2);
+  margin-right: calc((100% - var(--paper-width)) / 2);
+
+  /* padding: 1rem; */
+  line-height: var(
+    --line-spacing
+  ); /* Sync line spacing with background lines */
+  font-size: 1rem; /* Base font size */
+  color: #333;
+  border: 1px solid #ccc;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding in width calculations */
+
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper-color),
+    var(--paper-color) calc(var(--line-spacing) - 1px),
+    var(--line-color) var(--line-spacing)
+  );
+}
+
+.paper .lined {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper-color),
+    var(--paper-color) calc(var(--line-spacing) - 1px),
+    var(--line-color) var(--line-spacing)
+  );
+}
+
+.paper .unlined {
+  background: var(--paper-color);
+}
+
+.paper p {
+  margin: 0 0 var(--line-spacing) 0;
+}
+
+.content {
+  margin: 0 var(--p-h-margin) var(--line-spacing) var(--p-h-margin);
+}
+
+/* Optional: Ensure the text is always inside the boundaries */
+.lined-content {
+  margin: 0 var(--p-h-margin) var(--line-spacing) var(--p-h-margin);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper-color),
+    var(--paper-color) calc(var(--line-spacing) - 1px),
+    var(--line-color) var(--line-spacing)
+  );
+}
+
+.lined-paper .spacer {
+  background-color: var(--paper-color); /* Match the paper background */
+  /*padding: 1rem; Add padding for spacing inside the spacer */
+  margin: 0; /* Avoid extra spacing around the spacer */
+  width: 100%; /* Match the width of the lined paper */
+  box-sizing: border-box; /* Ensure padding doesn't overflow */
+  position: relative; /* Ensure it sits on top of the lines */
+  z-index: 1; /* Keep it above the background */
+}
+
+.title {
+  line-height: calc(var(--line-spacing) * 2);
+  padding: calc(var(--line-spacing) * 2) 0 var(--line-spacing) 0;
+}
+
+.subtitle {
+  padding: var(--line-spacing) 0 var(--line-spacing) 0;
+}
+
+.header {
+  font-weight: bold;
+  margin-top: var(--line-spacing);
+}
+
+@keyframes float-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -10px) rotate(2deg);
+  }
+  50% {
+    transform: translate(-5px, 5px) rotate(-1deg);
+  }
+  75% {
+    transform: translate(5px, 10px) rotate(1deg);
+  }
+}
+
+@keyframes float-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-8px, 8px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(12px, -5px) rotate(1deg);
+  }
+  75% {
+    transform: translate(-5px, -8px) rotate(-1deg);
+  }
+}
+
+@keyframes float-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5px, 12px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-10px, -8px) rotate(-2deg);
+  }
+  75% {
+    transform: translate(8px, -5px) rotate(2deg);
+  }
+}
+
+@keyframes float-4 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-12px, 5px) rotate(-1deg);
+  }
+  50% {
+    transform: translate(8px, 10px) rotate(2deg);
+  }
+  75% {
+    transform: translate(-5px, -12px) rotate(-2deg);
+  }
+}
+
+.doodle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+.doodle-1 {
+  animation: float-1 8s ease-in-out infinite;
+}
+.doodle-2 {
+  animation: float-2 9s ease-in-out infinite;
+}
+.doodle-3 {
+  animation: float-3 10s ease-in-out infinite;
+}
+.doodle-4 {
+  animation: float-4 11s ease-in-out infinite;
+}

@@ -1,0 +1,19 @@
+{
+    "name": "@plant-reader/db",
+    "type": "module",
+    "scripts": {
+        "dev": "tsc --watch",
+        "build": "tsc"
+    },
+    "exports": {
+        "./*": "./dist/src/*"
+    },
+    "devDependencies": {
+        "@plant-reader/typescript-config": "*",
+        "prisma": "^6.2.1",
+        "typescript": "latest"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.2.1"
+    }
+}

@@ -1,84 +1,178 @@
-# Turborepo starter
+# Plant Moisture Reader
 
-This is an official starter Turborepo.
+A full-stack IoT project that monitors plant moisture levels using Raspberry Pi Pico sensors and displays the data through a modern web interface. The system provides real-time moisture tracking and historical data visualization for your plants.
 
-## Using this example
+## System Architecture
 
-Run the following command:
+The project consists of four main components:
 
-```sh
-npx create-turbo@latest
+1. **Moisture Sensors** (Raspberry Pi Pico)
+
+   - Reads moisture levels using capacitive soil sensors
+   - Connects via WiFi for data transmission
+   - Reports readings through MQTT
+   - Includes LED status indicators for diagnostics
+
+2. **MQTT Broker**
+
+   - Handles communication between sensors and database
+   - Processes incoming sensor data
+   - Ensures reliable data transmission
+
+3. **Database** (PostgreSQL)
+
+   - Stores historical moisture readings
+   - Manages plant and sensor relationships
+   - Enables data analysis and trending
+
+4. **Web Interface** (Next.js)
+   - Modern, paper-styled UI for data visualization
+   - Real-time moisture level displays
+   - Historical data charts
+   - Plant management interface
+
+## Features
+
+- **Real-time Monitoring**
+
+  - Live moisture level readings
+  - Multiple sensor support per plant
+  - Visual status indicators
+
+- **Data Visualization**
+
+  - Interactive charts showing moisture trends
+  - Historical data analysis
+  - Easy-to-read moisture levels
+
+- **Plant Management**
+  - Add and manage multiple plants
+  - Configure sensors for each plant
+  - Track plant health over time
+
+## Technology Stack
+
+### Hardware
+
+- Raspberry Pi Pico W
+- Capacitive Soil Moisture Sensor v2.0
+- Built-in LED for status indication
+
+### Software
+
+- **Frontend**:
+
+  - Next.js 13+ (App Router)
+  - TypeScript
+  - TailwindCSS
+  - Chart.js for data visualization
+
+- **Backend**:
+
+  - PostgreSQL database
+  - MQTT for sensor communication
+  - MicroPython (Raspberry Pi Pico)
+
+- **Development**:
+  - Turborepo for monorepo management
+  - ESLint for code quality
+  - TypeScript for type safety
+
+## Getting Started
+
+### Hardware Setup
+
+1. Set up the Raspberry Pi Pico with required components:
+
+   - Raspberry Pi Pico W
+   - Capacitive Soil Moisture Sensor
+   - Power supply
+
+2. Flash the MicroPython code to the Pico:
+   - Upload all required files
+   - Configure WiFi and MQTT settings
+
+### Software Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone [repository-url]
+   cd plant-reader
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Configure environment variables:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit .env with your database and MQTT settings
+
+4. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+
+## Project Structure
+
+```
+plant-reader/
+├── packages/
+│   ├── services/
+│   │   └── plant-reader-app/    # Next.js web application
+│   ├── db/                      # Database schemas and types
+│   └── mqtt/                    # MQTT client and handlers
+└── docs/                        # Documentation
 ```
 
-## What's inside?
+## LED Status Indicators (Hardware)
 
-This Turborepo includes the following packages/apps:
+The Pico's onboard LED indicates different states:
 
-### Apps and Packages
+- Fast blinking (0.1s): Time sync in progress
+- Medium blinking (0.5s): WiFi connecting
+- Slow blinking (1.0s): MQTT connecting
+- LED off: Normal operation
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## MQTT Data Format
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Sensors publish data in the following JSON format:
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+```json
+{
+  "plant_reader_id": "sensor_id",
+  "created_at": [
+    "year",
+    "month",
+    "day",
+    "hour",
+    "minute",
+    "second",
+    "weekday",
+    0
+  ],
+  "moisture_level": "percentage",
+  "meta_data": {}
+}
 ```
 
-### Remote Caching
+## Contributing
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## License
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
-cd my-turborepo
-npx turbo login
-```
+## Acknowledgments
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- Built with [Turborepo](https://turbo.build/repo)
+- Powered by [Next.js](https://nextjs.org/)
+- Hardware powered by [Raspberry Pi Pico](https://www.raspberrypi.com/products/raspberry-pi-pico/)
