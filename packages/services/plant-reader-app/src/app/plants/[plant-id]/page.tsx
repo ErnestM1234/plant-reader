@@ -3,9 +3,9 @@ import PlantViewer from "./PlantViewer";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: {
+  params: Promise<{
     "plant-id": string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: Props) {

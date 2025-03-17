@@ -6,7 +6,7 @@ import { LinedContent, Paper, UnlinedContent } from "@/components/Paper";
 import { Plant, PlantReader } from "@plant-reader/db/types";
 import { useState } from "react";
 import { LineChart } from "react-chartkick";
-import "chartkick/chart.js";
+import "chart.js";
 import Header from "@/components/Header";
 import { DynamicHeightContainer } from "@/components/DynamicHeightContainer";
 import Doodles from "@/components/Doodles";
@@ -62,6 +62,7 @@ export default function PlantViewer({ plant }: Props) {
             ))}
           </select>
           <DynamicHeightContainer defaultHeight="9rem">
+            {/* @ts-expect-error - Known issue with react-chartkick types */}
             <LineChart data={chartData} />
           </DynamicHeightContainer>
         </UnlinedContent>
