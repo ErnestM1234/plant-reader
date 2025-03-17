@@ -1,19 +1,25 @@
 {
-    "name": "@plant-reader/db",
-    "type": "module",
-    "scripts": {
-        "dev": "tsc --watch",
-        "build": "tsc"
-    },
-    "exports": {
-        "./*": "./dist/src/*"
-    },
-    "devDependencies": {
-        "@plant-reader/typescript-config": "*",
-        "prisma": "^6.2.1",
-        "typescript": "latest"
-    },
-    "dependencies": {
-        "@prisma/client": "^6.2.1"
+  "name": "@plant-reader/db",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     }
+  },
+  "devDependencies": {
+    "@plant-reader/typescript-config": "*",
+    "prisma": "^6.2.1",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1"
+  }
 }
