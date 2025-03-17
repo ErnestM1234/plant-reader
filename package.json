@@ -2,10 +2,12 @@
   "name": "plant-reader",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "install:all": "pnpm install",
+    "start": "pnpm --filter plant-reader-app start"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -15,7 +17,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.8.2",
+  "packageManager": "pnpm@8.15.5",
   "workspaces": [
     "packages/lib/*",
     "packages/services/*"

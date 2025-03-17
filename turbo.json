@@ -16,6 +16,14 @@
       "cache": false,
       "persistent": true,
       "dependsOn": ["^build"]
+    },
+    "install": {
+      "cache": false,
+      "dependsOn": []
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

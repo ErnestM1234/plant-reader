@@ -37,11 +37,11 @@ export default async function getPlant({
       id: plant.id,
       name: plant.name,
       desc: plant.desc || undefined,
-      readers: plant.readers.map((reader) => ({
+      readers: plant.readers.map((reader: any) => ({
         id: reader.id,
         name: reader.name,
         metaData: (reader.metaData as Record<string, any>) || undefined,
-        plantReaderLogs: reader.plantReaderLogs.map((log) => ({
+        plantReaderLogs: reader.plantReaderLogs.map((log: any) => ({
           id: log.id,
           createdAt: log.createdAt,
           moistureLevel: log.moistureLevel,

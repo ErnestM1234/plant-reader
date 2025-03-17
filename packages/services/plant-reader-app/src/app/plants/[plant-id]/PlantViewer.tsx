@@ -62,7 +62,6 @@ export default function PlantViewer({ plant }: Props) {
             ))}
           </select>
           <DynamicHeightContainer defaultHeight="9rem">
-            {/* @ts-expect-error - Known issue with react-chartkick types */}
             <LineChart data={chartData} />
           </DynamicHeightContainer>
         </UnlinedContent>
